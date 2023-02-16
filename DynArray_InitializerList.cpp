@@ -20,10 +20,15 @@ public:
 
 	Point(int xP, int yP) : x{xP}, y{yP} {}  // конструктор с параметрами для установки значений
 	
-	int get_x() const { return x; }  // геттер для получения поля х
-	int get_y() const { return y; }  // геттер для получения поля у
-
+	// дружественная ф-ия - перегрузка оператора вывода << для вывода значений Point
+	friend std::ostream& operator<<(std::ostream& os, Point& obj);
 };
+
+std::ostream& operator<<(std::ostream& os, Point& obj)
+{
+	os << "x: " << obj.x << " y: " << obj.y << std::endl;
+	return os;
+}
 
 template <typename T> class DynArray  // шаблонный класс Динамический Массив
 {
@@ -64,13 +69,6 @@ public:
 		return length;
 	}
 };
-
-// перегрузка оператора вывода для вывода значений Point
-std::ostream& operator<<(std::ostream& out, Point& obj) 
-{
-	out << "x: " << obj.get_x() << " y: " << obj.get_y() << std::endl;
-	return out;
-}
 
 int main()
 {
